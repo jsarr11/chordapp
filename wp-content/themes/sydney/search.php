@@ -46,5 +46,5 @@ $archive_title_layout = get_theme_mod( 'archive_title_layout', 'layout1' );
 
 	<?php do_action('sydney_after_content'); ?>
 
-<?php do_action( 'sydney_get_sidebar' ); ?>
+
 <?php get_footer(); ?>

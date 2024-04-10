@@ -740,3 +740,13 @@ if ( defined( 'SITEORIGIN_PANELS_VERSION' ) && ( isset($pagenow) && $pagenow == 
 	}
 	add_action('admin_notices', 'sydney_toolbox_fa_update_admin_notice');
 }
+function sydney_modify_search_results_query( $query ) {
+    if ( is_admin() || ! $query->is_main_query() ) {
+        return;
+    }
+
+    if ( $query->is_search() ) {
+        $query->set( 'posts_per_page', 20 ); // Change 10 to the number of posts you want to display per page
+    }
+}
+add_action( 'pre_get_posts', 'sydney_modify_search_results_query' );

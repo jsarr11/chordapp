@@ -16,3 +16,47 @@ This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 Sydney is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic, Inc.
 */
+/********************   footer   *********************/
+.site-footer {
+    background-color: #00102E;
+    position: fixed;
+    bottom: 0;
+    width: -webkit-fill-available;
+}
+
+/********************   footer   *********************/
+.categories-title {
+    color: #233452;
+    display: flex;
+    justify-content: center;
+}
+
+/********************   archive   *********************/
+.entry-meta.above-title.delimiter-dot {
+    display: none;
+}
+
+/********************   search   *********************/
+h2.title-post.entry-title {
+    font-size: 1.2rem;
+}
+.posts-layout .hentry {
+    margin-bottom: 20px!important;
+}
+.search .page-header h3 {
+    text-decoration: underline #233452;
+}
+
+/********************   single   *********************/
+.single .nav-links {
+    display: none!important;
+}
+.single .entry-header .entry-meta {
+    display: none;
+}
+a.post-edit-link {
+    display: none;
+}
+p.logged-in-as {
+    display: none;
+}

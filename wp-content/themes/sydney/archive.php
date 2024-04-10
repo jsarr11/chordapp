@@ -11,44 +11,48 @@ get_header();
 
 $layout 		= sydney_blog_layout();
 $sidebar_pos 	= sydney_sidebar_position();
+
+// Modify the main query to display 20 posts per page
+query_posts( array( 'posts_per_page' => 20 ) );
+
 ?>
 
-	<?php do_action('sydney_before_content'); ?>
+<?php do_action('sydney_before_content'); ?>
 
-	<div id="primary" class="content-area <?php echo esc_attr( $sidebar_pos ); ?> <?php echo esc_attr( $layout ); ?> <?php echo esc_attr( apply_filters( 'sydney_content_area_class', 'col-md-9' ) ); ?>">
-		<main id="main" class="post-wrap" role="main">
+    <div id="primary" class="content-area <?php echo esc_attr( $sidebar_pos ); ?> <?php echo esc_attr( $layout ); ?> <?php echo esc_attr( apply_filters( 'sydney_content_area_class', 'col-md-9' ) ); ?>">
+        <main id="main" class="post-wrap" role="main">
 
-		<?php if ( have_posts() ) : ?>
+            <?php if ( have_posts() ) : ?>
 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="archive-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
-				?>
-			</header><!-- .page-header -->
+                <header class="page-header">
+                    <?php
+                    the_archive_title( '<h1 class="archive-title">', '</h1>' );
+                    the_archive_description( '<div class="taxonomy-description">', '</div>' );
+                    ?>
+                </header><!-- .page-header -->
 
-			<div class="posts-layout">
-				<div class="row" <?php sydney_masonry_data(); ?>>
-					<?php while ( have_posts() ) : the_post(); ?>
+                <div class="posts-layout">
+                    <div class="row" <?php sydney_masonry_data(); ?>>
+                        <?php while ( have_posts() ) : the_post(); ?>
 
-						<?php get_template_part( 'content', get_post_format() ); ?>
+                            <?php get_template_part( 'content', get_post_format() ); ?>
 
-					<?php endwhile; ?>
-				</div>
-			</div>
-			
-			<?php sydney_posts_navigation(); ?>	
+                        <?php endwhile; ?>
+                    </div>
+                </div>
 
-		<?php else : ?>
+                <?php sydney_posts_navigation(); ?>
 
-			<?php get_template_part( 'content', 'none' ); ?>
+            <?php else : ?>
 
-		<?php endif; ?>
+                <?php get_template_part( 'content', 'none' ); ?>
 
-		</main><!-- #main -->
-	</div><!-- #primary -->
+            <?php endif; ?>
 
-	<?php do_action('sydney_after_content'); ?>
+        </main><!-- #main -->
+    </div><!-- #primary -->
 
-<?php do_action( 'sydney_get_sidebar' ); ?>
+<?php do_action('sydney_after_content'); ?>
+
+
 <?php get_footer(); ?>

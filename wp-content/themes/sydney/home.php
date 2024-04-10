@@ -7,11 +7,25 @@
 
 get_header(); ?>
 
-	<?php do_action('sydney_before_content'); ?>
+<?php
 
-	<?php do_action('sydney_archive_content'); ?>
+    // Get all categories
+    $categories = get_categories();
+?>
 
-	<?php do_action('sydney_after_content'); ?>
+<h3 class="categories-title">Ακόρντα - Κατηγορίες</h3>
 
-<?php do_action( 'sydney_get_sidebar' ); ?>
+<?php
+    // Display all categories with links
+    echo '<ul>';
+    foreach ( $categories as $category ) {
+    echo '<li><a href="' . get_category_link( $category->term_id ) . '">' . $category->name . '</a></li>';
+    }
+    echo '</ul>';
+
+
+    ?>
+
+
+
 <?php get_footer(); ?>
