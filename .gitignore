@@ -1,0 +1,6 @@
+/wp-content/uploads/
+wp-config.php
+.htaccess
+/db-data
+/.db-data
+/.idea

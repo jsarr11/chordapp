@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  chordapp_web:
+    image: webdevops/php-apache-dev:7.4
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: chordapp_web
+    user: root
+    restart: always
+    volumes:
+      - "./:/app"
+    environment:
+      - WEB_ALIAS_DOMAIN=chordapp.loc
+      - WEB_DOCUMENT_ROOT=/app
+      - PHP_DATE_TIMEZONE=EST
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=2048M
+      - PHP_MAX_EXECUTION_TIME=300
+      - PHP_POST_MAX_SIZE=500M
+      - PHP_UPLOAD_MAX_FILESIZE=1024M
+      - PHP_DEBUGGER=xdebug
+      - PHP_SENDMAIL_PATH='/usr/bin/mhsendmail --smtp-addr chordapp_mail:1025'
+      - XDEBUG_REMOTE_CONNECT_BACK=0
+      - XDEBUG_REMOTE_HOST=192.168.1.2
+      - XDEBUG_REMOTE_PORT=9000
+      - php.xdebug.remote_enable=1
+      - php.xdebug.idekey=PHPSTORM
+    ports:
+      - "80:80"
+      - "443:443"
+      - "32834:22"
+  chordapp_db:
+    image: mariadb:10
+    container_name: chordapp_db
+    restart: always
+    volumes:
+      - ./db-data:/var/lib/mysql:delegated
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=chordapp
+    ports:
+      - "33067:3306"
