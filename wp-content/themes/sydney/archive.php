@@ -12,8 +12,8 @@ get_header();
 $layout 		= sydney_blog_layout();
 $sidebar_pos 	= sydney_sidebar_position();
 
-// Modify the main query to display 20 posts per page
-query_posts( array( 'posts_per_page' => 20 ) );
+//// Modify the main query to display 20 posts per page
+//query_posts( array( 'posts_per_page' => 20 ) );
 
 ?>
 
