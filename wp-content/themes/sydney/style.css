@@ -24,13 +24,12 @@ Sydney is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic,
     width: -webkit-fill-available;
 }
 
-/********************   footer   *********************/
+/********************   home   *********************/
 .categories-title {
     color: #233452;
     display: flex;
     justify-content: center;
 }
-
 /********************   archive   *********************/
 .entry-meta.above-title.delimiter-dot {
     display: none;
@@ -68,4 +67,7 @@ a.post-edit-link {
 }
 p.logged-in-as {
     display: none;
+}
+.category-link {
+    margin-right: 10px; /* Adjust as needed */
 }
