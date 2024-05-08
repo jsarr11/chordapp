@@ -41,6 +41,7 @@ a.page-numbers {
     color: #fff;
 }
 span.page-numbers.current {
+    padding: 10px;
     color: #00102e;
 }
 
