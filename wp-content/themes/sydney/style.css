@@ -35,6 +35,14 @@ Sydney is based on Underscores http://underscores.me/, (C) 2012-2015 Automattic,
 .entry-meta.above-title.delimiter-dot {
     display: none;
 }
+a.page-numbers {
+    padding: 10px;
+    background-color: #00102e;
+    color: #fff;
+}
+span.page-numbers.current {
+    color: #00102e;
+}
 
 /********************   search   *********************/
 h2.title-post.entry-title {
