@@ -761,3 +761,24 @@ function sydney_search_alphabetically( $query ) {
 }
 add_action( 'pre_get_posts', 'sydney_search_alphabetically' );
 ?>
+<?php
+add_action('wp_ajax_remove_category', 'remove_category');
+add_action('wp_ajax_nopriv_remove_category', 'remove_category');
+
+function remove_category() {
+$post_id = $_POST['post_id'];
+$category_id = $_POST['category_id'];
+wp_remove_object_terms($post_id, $category_id, 'category');
+wp_die();
+}
+
+add_action('wp_ajax_add_category', 'add_category');
+add_action('wp_ajax_nopriv_add_category', 'add_category');
+
+function add_category() {
+$post_id = $_POST['post_id'];
+$category_id = $_POST['category_id'];
+wp_set_object_terms($post_id, $category_id, 'category', true);
+wp_die();
+}
+?>

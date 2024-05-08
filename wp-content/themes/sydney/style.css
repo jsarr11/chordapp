@@ -71,3 +71,11 @@ p.logged-in-as {
 .category-link {
     margin-right: 10px; /* Adjust as needed */
 }
+.post-categories {
+    padding-bottom: 5px;
+}
+button.add-category,
+button.remove-category {
+    padding: 5px 10px 5px 10px;
+    margin-right: 15px;
+}
