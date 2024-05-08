@@ -750,3 +750,14 @@ if ( defined( 'SITEORIGIN_PANELS_VERSION' ) && ( isset($pagenow) && $pagenow == 
 //    }
 //}
 //add_action( 'pre_get_posts', 'sydney_modify_search_results_query' );
+
+
+// Modify search query to sort results alphabetically
+function sydney_search_alphabetically( $query ) {
+    if ( $query->is_search ) {
+        $query->set( 'orderby', 'title' );
+        $query->set( 'order', 'ASC' );
+    }
+}
+add_action( 'pre_get_posts', 'sydney_search_alphabetically' );
+?>
