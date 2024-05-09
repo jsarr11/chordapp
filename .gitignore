@@ -4,3 +4,4 @@ wp-config.php
 /db-data
 /.db-data
 /.idea
+docker-compose.yml
