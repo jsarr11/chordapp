@@ -797,3 +797,37 @@ function add_category() {
 
 wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom-j.js', array('jquery'), null, true);
 wp_localize_script('custom-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+
+
+//add category
+add_action('wp_ajax_add_new_category', 'add_new_category');
+add_action('wp_ajax_nopriv_add_new_category', 'add_new_category');
+
+function add_new_category() {
+    // Get the submitted data
+    $category_name = sanitize_text_field($_POST['category_name']);
+    $category_slug = sanitize_title($_POST['category_slug']);
+
+    // Check if the category with this slug already exists
+    if (!term_exists($category_slug, 'category')) {
+        // Create the category
+        $category_args = array(
+            'cat_name' => $category_name,
+            'category_description' => '',
+            'category_nicename' => $category_slug,
+            'category_parent' => ''
+        );
+
+        $category_id = wp_insert_category($category_args);
+
+        if (!is_wp_error($category_id)) {
+            echo 'success'; // Return success message
+        } else {
+            echo 'error'; // Return error message
+        }
+    } else {
+        echo 'exists'; // Return message if category slug already exists
+    }
+
+    wp_die();
+}
