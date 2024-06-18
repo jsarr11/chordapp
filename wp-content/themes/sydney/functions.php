@@ -831,3 +831,7 @@ function add_new_category() {
 
     wp_die();
 }
+function enqueue_custom_script() {
+    wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom-j.js', array('jquery'), '1.0', true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_script');
