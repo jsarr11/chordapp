@@ -1,9 +1,9 @@
 jQuery(document).ready(function($) {
-    $('.remove-category').click(function() {
+    $('.remove-category').on('click', function() {
         var postId = $(this).data('post-id');
         var categoryId = $(this).data('category-id');
         $.ajax({
-            url: '/wp-admin/admin-ajax.php',
+            url: ajax_object.ajax_url,
             type: 'POST',
             data: {
                 action: 'remove_category',
@@ -12,15 +12,18 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error);
             }
         });
     });
 
-    $('.add-category').click(function() {
+    $('.add-category').on('click', function() {
         var postId = $(this).data('post-id');
         var categoryId = $(this).data('category-id');
         $.ajax({
-            url: '/wp-admin/admin-ajax.php',
+            url: ajax_object.ajax_url,
             type: 'POST',
             data: {
                 action: 'add_category',
@@ -29,6 +32,9 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 location.reload();
+            },
+            error: function(xhr, status, error) {
+                console.log('Error: ' + error);
             }
         });
     });

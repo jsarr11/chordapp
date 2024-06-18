@@ -11,30 +11,30 @@ get_header();
 
 $layout         = sydney_blog_layout();
 $sidebar_pos    = sydney_sidebar_position();
-
 $posts_per_page = 20; // Number of posts per page
-
 $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
-
-//// Modify the main query to display 20 posts per page
-//query_posts( array( 'posts_per_page' => 20 ) );
-
+$category_slug = get_query_var('category_name'); // Get the category slug from the query variable
 ?>
-
 <?php do_action('sydney_before_content'); ?>
 
-<div id="primary" class="content-area <?php echo esc_attr( $sidebar_pos ); ?> <?php echo esc_attr( $layout ); ?> <?php echo esc_attr( apply_filters( 'sydney_content_area_class', 'col-md-9' ) ); ?>">
+<div id="primary" class="content-area <?php echo esc_attr( $sidebar_pos ); ?> <?php echo esc_attr( $layout ); ?>
+    <?php echo esc_attr( apply_filters( 'sydney_content_area_class', 'col-md-9' ) ); ?>">
     <main id="main" class="post-wrap" role="main">
 
         <?php
         // Custom query to retrieve posts sorted alphabetically
         $args = array(
             'post_type'      => 'post',
-            'posts_per_page' => $posts_per_page, // Show all posts
+            'posts_per_page' => $posts_per_page,
             'orderby'        => 'title',
-            'order'          => 'ASC', // Order posts in ascending order
-            'paged'          => $paged // Current page
+            'order'          => 'ASC',
+            'paged'          => $paged
         );
+
+        // Add category filter if a category slug is provided
+        if ($category_slug) {
+            $args['category_name'] = $category_slug;
+        }
 
         $custom_query = new WP_Query($args);
 
@@ -82,6 +82,5 @@ $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 </div><!-- #primary -->
 
 <?php do_action('sydney_after_content'); ?>
-
 
 <?php get_footer(); ?>

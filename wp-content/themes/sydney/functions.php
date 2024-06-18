@@ -762,23 +762,38 @@ function sydney_search_alphabetically( $query ) {
 add_action( 'pre_get_posts', 'sydney_search_alphabetically' );
 ?>
 <?php
+
+// BUTTONS POST.PHP
+// Enqueue jQuery and custom script
+function theme_enqueue_scripts() {
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom-script.js', array('jquery'), null, true);
+    wp_localize_script('custom-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+
+// Register AJAX actions for logged-in and non-logged-in users
 add_action('wp_ajax_remove_category', 'remove_category');
 add_action('wp_ajax_nopriv_remove_category', 'remove_category');
 
 function remove_category() {
-$post_id = $_POST['post_id'];
-$category_id = $_POST['category_id'];
-wp_remove_object_terms($post_id, $category_id, 'category');
-wp_die();
+    // Sanitize input
+    $post_id = intval($_POST['post_id']);
+    $category_id = intval($_POST['category_id']);
+    wp_remove_object_terms($post_id, $category_id, 'category');
+    wp_die();
 }
 
 add_action('wp_ajax_add_category', 'add_category');
 add_action('wp_ajax_nopriv_add_category', 'add_category');
 
 function add_category() {
-$post_id = $_POST['post_id'];
-$category_id = $_POST['category_id'];
-wp_set_object_terms($post_id, $category_id, 'category', true);
-wp_die();
+    // Sanitize input
+    $post_id = intval($_POST['post_id']);
+    $category_id = intval($_POST['category_id']);
+    wp_set_object_terms($post_id, $category_id, 'category', true);
+    wp_die();
 }
-?>
+
+wp_enqueue_script('custom-script', get_template_directory_uri() . '/js/custom-j.js', array('jquery'), null, true);
+wp_localize_script('custom-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));

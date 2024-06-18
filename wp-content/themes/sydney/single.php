@@ -5,14 +5,12 @@
  * @package Sydney
  */
 
-get_header(); ?>
+get_header();
+?>
 
+<?php do_action('sydney_before_content'); ?>
 
-	<?php do_action('sydney_before_content'); ?>
-
-
-
-	<?php do_action('sydney_single_content'); ?>
+<?php do_action('sydney_single_content'); ?>
 
 <footer class="entry-footer">
     <?php
@@ -51,9 +49,6 @@ get_header(); ?>
     ?>
 </footer><!-- .entry-footer -->
 
-
-	<?php do_action('sydney_after_content'); ?>
-
-
+<?php do_action('sydney_after_content'); ?>
 
 <?php get_footer(); ?>
