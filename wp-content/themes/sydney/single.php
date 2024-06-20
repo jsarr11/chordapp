@@ -47,6 +47,36 @@ get_header();
         echo '</div>';
     }
     ?>
+
+
+    <div class="post-navigation">
+        <div class="prev-post">
+            <?php previous_post_link('%link', '← Previous Post'); ?>
+        </div>
+        <div class="next-post">
+            <?php next_post_link('%link', 'Next Post →'); ?>
+        </div>
+    </div>
+    <style>
+        .post-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .prev-post a,
+        .next-post a {
+            text-decoration: none;
+            color: #0073aa;
+        }
+
+        .prev-post a:hover,
+        .next-post a:hover {
+            color: #005177;
+        }
+
+    </style>
+
 </footer><!-- .entry-footer -->
 
 <?php do_action('sydney_after_content'); ?>
